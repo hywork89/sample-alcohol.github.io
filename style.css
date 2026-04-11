@@ -2609,3 +2609,135 @@ ul {
   }
 
 }
+/* =========================
+   SP FV 再設計
+========================= */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    padding-bottom: 34px;
+  }
+
+  .hero-bg img {
+    object-position: center center;
+    filter: saturate(0.72) brightness(0.24) contrast(1.06);
+    transform: scale(1.02);
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.68)),
+      linear-gradient(to right, rgba(4, 4, 4, 0.72), rgba(4, 4, 4, 0.38));
+  }
+
+  .hero-inner {
+    min-height: 100svh;
+    align-content: start;
+    padding-top: 96px;
+    padding-bottom: 54px;
+    gap: 14px;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .hero-preface {
+    margin: 0 0 10px;
+    font-size: 0.84rem;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .hero-title,
+  .hero h1 {
+    gap: 0.02em;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.9rem, 12vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  .hero h1 span:last-child,
+  .hero-title-line-2 {
+    padding-left: 0.12em;
+  }
+
+  .hero-text {
+    margin-top: 18px;
+    max-width: 19em;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-text br {
+    display: none;
+  }
+
+  .hero-actions {
+    margin-top: 22px;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 0.92rem;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-badges {
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  .hero-badges span {
+    padding: 7px 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* SPではバッジを2個までに絞る */
+  .hero-badges span:nth-child(3) {
+    display: none;
+  }
+
+  /* 縦コピーはSPでは余白を食うので消す */
+  .hero-vertical {
+    display: none;
+  }
+
+  /* Scrollも主張を弱める */
+  .scroll-indicator {
+    bottom: 8px !important;
+    font-size: 0.58rem !important;
+    opacity: 0.72 !important;
+  }
+
+  .scroll-indicator span {
+    height: 22px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .scroll-indicator::after {
+    height: 12px !important;
+  }
+}
+@media (max-width: 768px) {
+  .hero-actions .btn-secondary {
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.88);
+  }
+}
