@@ -9,10 +9,11 @@ const scrollIndicator = document.querySelector(".scroll-indicator");
 const introOverlay = document.getElementById("introOverlay");
 
 /* =========================
-   ヘッダーのスクロール制御
+   ヘッダー スクロール状態
 ========================= */
 function toggleHeaderScrolled() {
   if (!header) return;
+
   if (window.scrollY > 20) {
     header.classList.add("is-scrolled");
   } else {
@@ -20,33 +21,64 @@ function toggleHeaderScrolled() {
   }
 }
 
-window.addEventListener("scroll", toggleHeaderScrolled, { passive: true });
-
 /* =========================
-   ハンバーガーメニュー
+   SPメニュー
 ========================= */
-if (navToggle && globalNav) {
+function setupMobileMenu() {
+  if (!navToggle || !globalNav) return;
+
+  let savedScrollY = 0;
+
+  const openMenu = () => {
+    savedScrollY = window.scrollY || window.pageYOffset;
+
+    navToggle.classList.add("is-open");
+    globalNav.classList.add("is-open");
+    navToggle.setAttribute("aria-expanded", "true");
+
+    document.body.classList.add("menu-open");
+    document.body.style.top = `-${savedScrollY}px`;
+  };
+
+  const closeMenu = () => {
+    navToggle.classList.remove("is-open");
+    globalNav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+
+    document.body.classList.remove("menu-open");
+    document.body.style.top = "";
+
+    window.scrollTo(0, savedScrollY);
+  };
+
   navToggle.addEventListener("click", () => {
-    const isOpen = navToggle.classList.toggle("is-open");
-    globalNav.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    document.body.classList.toggle("menu-open", isOpen);
+    const isOpen = navToggle.classList.contains("is-open");
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   globalNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      navToggle.classList.remove("is-open");
-      globalNav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("menu-open");
+      closeMenu();
     });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && navToggle.classList.contains("is-open")) {
+      closeMenu();
+    }
   });
 }
 
 /* =========================
    reveal
 ========================= */
-if (revealItems.length > 0) {
+function setupReveal() {
+  if (!revealItems.length) return;
+
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -126,7 +158,9 @@ function toggleBackToTop() {
   }
 }
 
-if (backToTopBtn) {
+function setupBackToTop() {
+  if (!backToTopBtn) return;
+
   backToTopBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -136,7 +170,7 @@ if (backToTopBtn) {
 }
 
 /* =========================
-   FV 和柄パララックス
+   FV 和柄パララックス + Scroll
 ========================= */
 function updateHeroParallax() {
   if (!hero) return;
@@ -193,6 +227,10 @@ function runIntroOverlay() {
    初期実行
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
+  setupMobileMenu();
+  setupReveal();
+  setupBackToTop();
+
   toggleHeaderScrolled();
   toggleBackToTop();
   updateHeroParallax();
@@ -205,10 +243,15 @@ window.addEventListener("load", () => {
   }, 900);
 });
 
-window.addEventListener("scroll", () => {
-  toggleBackToTop();
-  updateHeroParallax();
-}, { passive: true });
+window.addEventListener(
+  "scroll",
+  () => {
+    toggleHeaderScrolled();
+    toggleBackToTop();
+    updateHeroParallax();
+  },
+  { passive: true }
+);
 
 window.addEventListener("resize", () => {
   updateHeroParallax();
