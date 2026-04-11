@@ -2007,7 +2007,7 @@ ul {
 .hero-inner,
 .scroll-indicator {
   position: relative;
-  z-index: 3;
+  z-index: 5;
 }
 
 @keyframes fvPatternBloom {
@@ -2042,4 +2042,17 @@ ul {
     opacity: 1;
     transform: scale(1);
   }
+}
+.scroll-indicator span {
+  color: #c8a86b;
+  letter-spacing: 0.2em;
+}
+
+.scroll-indicator::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 28px;
+  margin: 6px auto 0;
+  background: linear-gradient(to bottom, #c8a86b, transparent);
 }
