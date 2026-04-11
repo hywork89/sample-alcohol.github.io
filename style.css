@@ -1960,41 +1960,16 @@ ul {
   }
 }
 /* =========================
-   FV 和柄オーバーレイ
+   FV 和柄オーバーレイ + Scroll修正版
 ========================= */
 
 .hero {
+  position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -6%;
-  z-index: 1;
-  pointer-events: none;
-  background: url("./fv-back2.png") center center / cover no-repeat;
-  opacity: 0;
-  transform: scale(1.08);
-  filter: blur(10px);
-  mix-blend-mode: screen;
-  animation: fvPatternBloom 5.5s ease-out forwards;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 72%, rgba(255, 235, 190, 0.08), transparent 24%),
-    radial-gradient(circle at 84% 18%, rgba(255, 235, 190, 0.10), transparent 22%);
-  opacity: 0;
-  filter: blur(18px);
-  animation: fvLightBloom 4.8s ease-out forwards;
-}
-
+/* 背景写真 */
 .hero-bg,
 .hero-overlay,
 .hero-paper,
@@ -2004,10 +1979,123 @@ ul {
   z-index: 0;
 }
 
-.hero-inner,
-.scroll-indicator {
+/* 和柄レイヤー */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -4%;
+  z-index: 1;
+  pointer-events: none;
+  background: url("./fv-back2.png") center center / cover no-repeat;
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: fvPatternBloom 6s ease-out forwards;
+}
+
+/* じんわり光 */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 72%, rgba(255, 235, 190, 0.08), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(255, 235, 190, 0.10), transparent 22%);
+  opacity: 0;
+  filter: blur(18px);
+  animation: fvLightBloom 5s ease-out forwards;
+}
+
+/* テキスト本体 */
+.hero-inner {
   position: relative;
-  z-index: 5;
+  z-index: 6;
+}
+
+/* Scroll表示を最前面に固定 */
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 8;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* 縦線 */
+.scroll-indicator span {
+  display: block;
+  width: 1px;
+  height: 34px;
+  margin: 0 auto 8px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 動く光 */
+.scroll-indicator span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 178, 124, 0),
+    rgba(211, 178, 124, 0.95),
+    rgba(211, 178, 124, 0)
+  );
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+/* 下にうっすら余韻ライン */
+.scroll-indicator::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 24px;
+  margin: 6px auto 0;
+  background: linear-gradient(to bottom, rgba(211, 178, 124, 0.85), transparent);
+  opacity: 0.9;
+}
+
+.scroll-indicator small {
+  display: block;
+  color: rgba(255, 255, 255, 0.84);
+  letter-spacing: 0.18em;
+}
+
+/* PCで少しだけ上げる */
+@media (min-width: 1900px) {
+  .scroll-indicator {
+    bottom: 18px;
+  }
+}
+
+/* SPでは少し小さく */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    bottom: 10px;
+    font-size: 0.64rem;
+  }
+
+  .scroll-indicator span {
+    height: 28px;
+    margin-bottom: 6px;
+  }
+
+  .scroll-indicator::after {
+    height: 18px;
+  }
 }
 
 @keyframes fvPatternBloom {
@@ -2017,17 +2105,17 @@ ul {
     filter: blur(18px);
   }
   35% {
-    opacity: 0.10;
+    opacity: 0.08;
     transform: scale(1.09);
     filter: blur(12px);
   }
   70% {
-    opacity: 0.18;
+    opacity: 0.16;
     transform: scale(1.05);
     filter: blur(7px);
   }
   100% {
-    opacity: 0.22;
+    opacity: 0.2;
     transform: scale(1.02);
     filter: blur(4px);
   }
@@ -2043,16 +2131,101 @@ ul {
     transform: scale(1);
   }
 }
+/* =========================
+   Scroll indicator 強制表示修正版
+========================= */
+
+.hero {
+  position: relative;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 6;
+}
+
+.scroll-indicator {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  transform: translateX(-50%) !important;
+  z-index: 999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-align: center !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
 .scroll-indicator span {
-  color: #c8a86b;
-  letter-spacing: 0.2em;
+  display: block !important;
+  position: relative !important;
+  width: 1px !important;
+  height: 34px !important;
+  margin: 0 auto 8px !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  overflow: hidden !important;
+}
+
+.scroll-indicator span::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 178, 124, 0),
+    rgba(211, 178, 124, 0.95),
+    rgba(211, 178, 124, 0)
+  ) !important;
+  animation: scrollLine 1.8s ease-in-out infinite !important;
+}
+
+.scroll-indicator small {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.72rem !important;
+  line-height: 1 !important;
+  letter-spacing: 0.18em !important;
+  color: rgba(255, 255, 255, 0.88) !important;
 }
 
 .scroll-indicator::after {
-  content: "";
-  display: block;
-  width: 1px;
-  height: 28px;
-  margin: 6px auto 0;
-  background: linear-gradient(to bottom, #c8a86b, transparent);
+  content: "" !important;
+  display: block !important;
+  width: 1px !important;
+  height: 22px !important;
+  margin: 6px auto 0 !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 178, 124, 0.85),
+    transparent
+  ) !important;
+  opacity: 0.9 !important;
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    bottom: 10px !important;
+  }
+
+  .scroll-indicator span {
+    height: 28px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .scroll-indicator small {
+    font-size: 0.64rem !important;
+  }
+
+  .scroll-indicator::after {
+    height: 16px !important;
+  }
 }
