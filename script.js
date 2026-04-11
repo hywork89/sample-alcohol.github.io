@@ -3,16 +3,28 @@ const navToggle = document.querySelector(".nav-toggle");
 const globalNav = document.querySelector(".global-nav");
 const revealItems = document.querySelectorAll(".reveal");
 const typeTarget = document.querySelector(".type-target");
+const backToTopBtn = document.querySelector(".back-to-top");
+const hero = document.querySelector(".hero");
+const scrollIndicator = document.querySelector(".scroll-indicator");
+const introOverlay = document.getElementById("introOverlay");
 
-window.addEventListener("scroll", () => {
+/* =========================
+   ヘッダーのスクロール制御
+========================= */
+function toggleHeaderScrolled() {
   if (!header) return;
   if (window.scrollY > 20) {
     header.classList.add("is-scrolled");
   } else {
     header.classList.remove("is-scrolled");
   }
-});
+}
 
+window.addEventListener("scroll", toggleHeaderScrolled, { passive: true });
+
+/* =========================
+   ハンバーガーメニュー
+========================= */
 if (navToggle && globalNav) {
   navToggle.addEventListener("click", () => {
     const isOpen = navToggle.classList.toggle("is-open");
@@ -31,22 +43,30 @@ if (navToggle && globalNav) {
   });
 }
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-visible");
-      revealObserver.unobserve(entry.target);
-    });
-  },
-  {
-    threshold: 0.15,
-    rootMargin: "0px 0px -8% 0px",
-  }
-);
+/* =========================
+   reveal
+========================= */
+if (revealItems.length > 0) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
 
-revealItems.forEach((el) => revealObserver.observe(el));
+  revealItems.forEach((el) => revealObserver.observe(el));
+}
 
+/* =========================
+   縦書きタイプ演出
+========================= */
 function getTypingDelay(char, index, total) {
   if (char === "、") return 220;
   if (char === "。") return 340;
@@ -69,6 +89,7 @@ function typeWriter(target) {
 
   const writeNext = () => {
     const char = chars[index];
+
     if (char === undefined) {
       target.classList.remove("is-typing");
       target.classList.add("is-done");
@@ -92,25 +113,20 @@ function typeWriter(target) {
   writeNext();
 }
 
-window.addEventListener("load", () => {
-  window.setTimeout(() => {
-    typeWriter(typeTarget);
-  }, 900);
-});
-const backToTopBtn = document.querySelector(".back-to-top");
+/* =========================
+   TOPへ戻るボタン
+========================= */
+function toggleBackToTop() {
+  if (!backToTopBtn) return;
+
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("show", "is-visible");
+  } else {
+    backToTopBtn.classList.remove("show", "is-visible");
+  }
+}
 
 if (backToTopBtn) {
-  const toggleBackToTop = () => {
-    if (window.scrollY > 420) {
-      backToTopBtn.classList.add("is-visible");
-    } else {
-      backToTopBtn.classList.remove("is-visible");
-    }
-  };
-
-  window.addEventListener("scroll", toggleBackToTop);
-  toggleBackToTop();
-
   backToTopBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -118,130 +134,86 @@ if (backToTopBtn) {
     });
   });
 }
+
 /* =========================
    FV 和柄パララックス
 ========================= */
-
-const hero = document.querySelector(".hero");
-
 function updateHeroParallax() {
   if (!hero) return;
 
   const scrollY = window.scrollY || window.pageYOffset;
   const heroHeight = hero.offsetHeight || 1;
-
-  // FVの範囲内だけ効かせる
   const progress = Math.min(scrollY / heroHeight, 1);
 
-  // 和柄はほんの少しだけ下へ流す
   const patternY = progress * 24;
-
-  // 光はさらに控えめ
   const lightY = progress * 12;
 
   hero.style.setProperty("--fv-pattern-y", `${patternY}px`);
   hero.style.setProperty("--fv-light-y", `${lightY}px`);
 
-  // Scroll表示は下に行くほど少し薄くする
-  const scrollIndicator = document.querySelector(".scroll-indicator");
   if (scrollIndicator) {
     const opacity = Math.max(1 - progress * 1.15, 0);
     scrollIndicator.style.opacity = String(opacity);
   }
 }
 
-window.addEventListener("scroll", updateHeroParallax, { passive: true });
-window.addEventListener("load", updateHeroParallax);
-window.addEventListener("resize", updateHeroParallax);
+/* =========================
+   SPイントロ
+   - SPのみ
+   - 初回もリロードも毎回表示
+========================= */
+function runIntroOverlay() {
+  if (!introOverlay) return;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("introOverlay");
+  const isMobile = window.innerWidth <= 768;
 
-  // SP判定
-  const isSP = window.innerWidth <= 768;
-
-  // 初回判定
-  const isFirstVisit = !sessionStorage.getItem("visited");
-
-  if (!isSP || !isFirstVisit) {
-    if (overlay) overlay.style.display = "none";
+  if (!isMobile) {
+    introOverlay.style.display = "none";
     return;
   }
 
-  // 初回フラグ保存
-  sessionStorage.setItem("visited", "true");
+  introOverlay.classList.remove("fade-out", "show");
+  introOverlay.classList.add("active");
+  introOverlay.style.display = "flex";
 
-  // 3秒後にフェードアウト
-  setTimeout(() => {
-    overlay.classList.add("hide");
-  }, 3000);
+  window.setTimeout(() => {
+    introOverlay.classList.add("show");
+  }, 50);
 
-  // 4秒後に完全削除
-  setTimeout(() => {
-    overlay.style.display = "none";
-  }, 4000);
-});
-// =========================
-// 初回イントロ（SPのみ）
-// =========================
+  window.setTimeout(() => {
+    introOverlay.classList.add("fade-out");
+  }, 1800);
+
+  window.setTimeout(() => {
+    introOverlay.style.display = "none";
+  }, 2800);
+}
+
+/* =========================
+   初期実行
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("introOverlay");
-
-  if (!overlay) return;
-
-  const isMobile = window.innerWidth <= 768;
-  const hasSeen = sessionStorage.getItem("introShown");
-
-  if (isMobile && !hasSeen) {
-    overlay.classList.add("active");
-
-    setTimeout(() => {
-      overlay.classList.add("show");
-    }, 50);
-
-    setTimeout(() => {
-      overlay.classList.add("fade-out");
-      sessionStorage.setItem("introShown", "true");
-    }, 2000);
-
-    setTimeout(() => {
-      overlay.style.display = "none";
-    }, 3000);
-  } else {
-    overlay.style.display = "none";
-  }
+  toggleHeaderScrolled();
+  toggleBackToTop();
+  updateHeroParallax();
+  runIntroOverlay();
 });
 
-
-// =========================
-// TOPボタン
-// =========================
-const btn = document.querySelector(".back-to-top");
+window.addEventListener("load", () => {
+  window.setTimeout(() => {
+    typeWriter(typeTarget);
+  }, 900);
+});
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
+  toggleBackToTop();
+  updateHeroParallax();
+}, { passive: true });
+
+window.addEventListener("resize", () => {
+  updateHeroParallax();
+
+  if (introOverlay && window.innerWidth > 768) {
+    introOverlay.style.display = "none";
   }
-});
-
-btn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-
-// =========================
-// 軽いパララックス（和柄）
-/* heroに style="--fv-pattern-y" が入ってる前提 */
-// =========================
-window.addEventListener("scroll", () => {
-  const hero = document.querySelector(".hero");
-  if (!hero) return;
-
-  const y = window.scrollY * 0.15;
-  hero.style.setProperty("--fv-pattern-y", `${y}px`);
 });
