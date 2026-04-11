@@ -2229,3 +2229,207 @@ ul {
     height: 16px !important;
   }
 }
+/* =========================
+   追加演出
+   1) Scroll余韻フェード
+   2) FVタイトルじわ出し
+   3) 和柄パララックス用
+========================= */
+
+/* 和柄オーバーレイをJSで少し動かすための変数 */
+.hero::before {
+  transform: translate3d(0, var(--fv-pattern-y, 0px), 0) scale(1.02);
+  will-change: transform, opacity, filter;
+}
+
+/* 光レイヤーも少しだけ連動 */
+.hero::after {
+  transform: translate3d(0, var(--fv-light-y, 0px), 0);
+  will-change: transform, opacity, filter;
+}
+
+/* -------------------------
+   Scrollに余韻
+------------------------- */
+.scroll-indicator {
+  animation: scrollIndicatorFloat 3.2s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  position: relative;
+}
+
+.scroll-indicator span::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 -14px 0;
+  width: 1px;
+  height: 20px;
+  margin: auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 178, 124, 0.42),
+    rgba(211, 178, 124, 0)
+  );
+  opacity: 0.75;
+  filter: blur(0.6px);
+  animation: scrollAfterglow 1.8s ease-in-out infinite;
+}
+
+.scroll-indicator small {
+  opacity: 0.92;
+  animation: scrollTextBreath 2.4s ease-in-out infinite;
+}
+
+@keyframes scrollIndicatorFloat {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(4px);
+  }
+}
+
+@keyframes scrollAfterglow {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  30% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes scrollTextBreath {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* -------------------------
+   FVタイトルの微アニメ
+------------------------- */
+.hero-title {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroTitleReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+.hero-title-line {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(8px);
+}
+
+.hero-title-line-1 {
+  animation: heroLineReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.38s;
+}
+
+.hero-title-line-2 {
+  animation: heroLineReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.56s;
+}
+
+.hero-title::before {
+  opacity: 0;
+  animation: heroLineBarReveal 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.hero-title-line-1::after,
+.hero-title-line-2::after {
+  opacity: 0;
+  animation: heroGlowReveal 1.5s ease forwards;
+}
+
+.hero-title-line-1::after {
+  animation-delay: 0.55s;
+}
+
+.hero-title-line-2::after {
+  animation-delay: 0.72s;
+}
+
+@keyframes heroTitleReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroLineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroLineBarReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroGlowReveal {
+  0% {
+    opacity: 0;
+    filter: blur(22px);
+  }
+  100% {
+    opacity: 0.55;
+    filter: blur(18px);
+  }
+}
+
+/* fade-up と二重で暴れないように、タイトルだけ整える */
+.hero-title.fade-up {
+  opacity: 1;
+  transform: none;
+  animation: heroTitleReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+/* SPは少し弱める */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    animation-duration: 2.8s;
+  }
+
+  .hero-title {
+    animation-duration: 1.2s;
+  }
+
+  .hero-title-line-1,
+  .hero-title-line-2 {
+    filter: blur(6px);
+  }
+
+  .hero::before {
+    transform: translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.6), 0) scale(1.02);
+  }
+
+  .hero::after {
+    transform: translate3d(0, calc(var(--fv-light-y, 0px) * 0.6), 0);
+  }
+}

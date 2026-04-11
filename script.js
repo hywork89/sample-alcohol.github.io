@@ -118,3 +118,38 @@ if (backToTopBtn) {
     });
   });
 }
+/* =========================
+   FV 和柄パララックス
+========================= */
+
+const hero = document.querySelector(".hero");
+
+function updateHeroParallax() {
+  if (!hero) return;
+
+  const scrollY = window.scrollY || window.pageYOffset;
+  const heroHeight = hero.offsetHeight || 1;
+
+  // FVの範囲内だけ効かせる
+  const progress = Math.min(scrollY / heroHeight, 1);
+
+  // 和柄はほんの少しだけ下へ流す
+  const patternY = progress * 24;
+
+  // 光はさらに控えめ
+  const lightY = progress * 12;
+
+  hero.style.setProperty("--fv-pattern-y", `${patternY}px`);
+  hero.style.setProperty("--fv-light-y", `${lightY}px`);
+
+  // Scroll表示は下に行くほど少し薄くする
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+  if (scrollIndicator) {
+    const opacity = Math.max(1 - progress * 1.15, 0);
+    scrollIndicator.style.opacity = String(opacity);
+  }
+}
+
+window.addEventListener("scroll", updateHeroParallax, { passive: true });
+window.addEventListener("load", updateHeroParallax);
+window.addEventListener("resize", updateHeroParallax);
