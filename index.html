@@ -14,6 +14,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- 初回イントロ（SPのみ） -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-bg"></div>
+    <div class="intro-inner">
+      <h1 class="intro-title">大山酒造所</h1>
+    </div>
+  </div>
+
   <div class="site-bg site-bg-1"></div>
   <div class="site-bg site-bg-2"></div>
   <div class="site-noise"></div>
@@ -428,10 +437,11 @@
         </div>
       </div>
     </section>
-    <button class="back-to-top" aria-label="ページ上部へ戻る">
-    <span>TOP</span>
-    </button>
   </main>
+
+  <button class="back-to-top" aria-label="ページ上部へ戻る">
+    <span>TOP</span>
+  </button>
 
   <footer class="site-footer">
     <div class="container footer-inner">

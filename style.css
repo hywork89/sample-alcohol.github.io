@@ -2741,3 +2741,234 @@ ul {
     color: rgba(255,255,255,0.88);
   }
 }
+@media (max-width: 768px) {
+
+  .hero-inner {
+    min-height: 100svh;
+
+    /* ←ここが重要 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* 上に少しだけ寄せる */
+    padding-top: 72px;
+    padding-bottom: 80px;
+
+    gap: 16px;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero-copy {
+    transform: translateY(-12px);
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .hero-badges {
+    margin-top: 10px;
+  }
+
+}
+/* =========================
+   初回イントロ（SPのみ）
+========================= */
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: none;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.intro-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  background: url("./Gift.jpg") center / cover no-repeat;
+  filter: brightness(0.55) contrast(1.1);
+  transform: scale(1.05);
+  animation: introZoom 4s ease forwards;
+}
+
+@keyframes introZoom {
+  0% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.intro-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-title {
+  color: #fff;
+  font-size: clamp(2.4rem, 10vw, 3.6rem);
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introText 1.2s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes introText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SPだけ表示 */
+@media (max-width: 768px) {
+  .intro-overlay {
+    display: block;
+  }
+}
+.intro-title {
+  font-family: serif;
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.2),
+    0 0 40px rgba(212,168,106,0.15);
+}
+/* =========================
+   初回イントロ（SPのみ）
+========================= */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.intro-overlay.active {
+  display: flex;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  background: url('./Gift.jpg') center/cover no-repeat;
+  filter: brightness(0.5);
+  transform: scale(1.1);
+  transition: transform 2s ease;
+}
+
+.intro-overlay.show .intro-bg {
+  transform: scale(1);
+}
+
+.intro-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.intro-title {
+  font-family: 'Sawarabi Mincho', serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: introFade 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes introFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* フェードアウト */
+.intro-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+/* SPだけ表示 */
+@media (max-width: 768px) {
+  .intro-overlay.active {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .intro-overlay {
+    display: none !important;
+  }
+}
+
+
+/* =========================
+   TOPボタン
+========================= */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(200,160,90,0.9);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #c8a05a;
+}
+
+
+/* =========================
+   Scroll余韻
+========================= */
+.scroll-indicator {
+  animation: scrollFade 2.5s ease infinite;
+}
+
+@keyframes scrollFade {
+  0% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(8px); }
+  100% { opacity: 0; transform: translateY(16px); }
+}

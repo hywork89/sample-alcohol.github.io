@@ -154,3 +154,94 @@ window.addEventListener("scroll", updateHeroParallax, { passive: true });
 window.addEventListener("load", updateHeroParallax);
 window.addEventListener("resize", updateHeroParallax);
 
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("introOverlay");
+
+  // SP判定
+  const isSP = window.innerWidth <= 768;
+
+  // 初回判定
+  const isFirstVisit = !sessionStorage.getItem("visited");
+
+  if (!isSP || !isFirstVisit) {
+    if (overlay) overlay.style.display = "none";
+    return;
+  }
+
+  // 初回フラグ保存
+  sessionStorage.setItem("visited", "true");
+
+  // 3秒後にフェードアウト
+  setTimeout(() => {
+    overlay.classList.add("hide");
+  }, 3000);
+
+  // 4秒後に完全削除
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 4000);
+});
+// =========================
+// 初回イントロ（SPのみ）
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("introOverlay");
+
+  if (!overlay) return;
+
+  const isMobile = window.innerWidth <= 768;
+  const hasSeen = sessionStorage.getItem("introShown");
+
+  if (isMobile && !hasSeen) {
+    overlay.classList.add("active");
+
+    setTimeout(() => {
+      overlay.classList.add("show");
+    }, 50);
+
+    setTimeout(() => {
+      overlay.classList.add("fade-out");
+      sessionStorage.setItem("introShown", "true");
+    }, 2000);
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 3000);
+  } else {
+    overlay.style.display = "none";
+  }
+});
+
+
+// =========================
+// TOPボタン
+// =========================
+const btn = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+
+// =========================
+// 軽いパララックス（和柄）
+/* heroに style="--fv-pattern-y" が入ってる前提 */
+// =========================
+window.addEventListener("scroll", () => {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  const y = window.scrollY * 0.15;
+  hero.style.setProperty("--fv-pattern-y", `${y}px`);
+});
