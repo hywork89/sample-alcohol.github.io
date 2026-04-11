@@ -1959,3 +1959,87 @@ ul {
     letter-spacing: 0.12em;
   }
 }
+/* =========================
+   FV 和柄オーバーレイ
+========================= */
+
+.hero {
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  z-index: 1;
+  pointer-events: none;
+  background: url("./fv-back.png") center center / cover no-repeat;
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: fvPatternBloom 5.5s ease-out forwards;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 72%, rgba(255, 235, 190, 0.08), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(255, 235, 190, 0.10), transparent 22%);
+  opacity: 0;
+  filter: blur(18px);
+  animation: fvLightBloom 4.8s ease-out forwards;
+}
+
+.hero-bg,
+.hero-overlay,
+.hero-paper,
+.hero-grid,
+.hero-glow,
+.hero-emblem {
+  z-index: 0;
+}
+
+.hero-inner,
+.scroll-indicator {
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes fvPatternBloom {
+  0% {
+    opacity: 0;
+    transform: scale(1.12);
+    filter: blur(18px);
+  }
+  35% {
+    opacity: 0.10;
+    transform: scale(1.09);
+    filter: blur(12px);
+  }
+  70% {
+    opacity: 0.18;
+    transform: scale(1.05);
+    filter: blur(7px);
+  }
+  100% {
+    opacity: 0.22;
+    transform: scale(1.02);
+    filter: blur(4px);
+  }
+}
+
+@keyframes fvLightBloom {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
