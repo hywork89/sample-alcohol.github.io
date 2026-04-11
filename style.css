@@ -1525,3 +1525,59 @@ ul {
     padding: 22px;
   }
 }
+/* =========================
+   1900px以上 最適化
+========================= */
+@media (min-width: 1900px) {
+
+  /* 全体の広がりを制御 */
+  .hero-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* テキストブロック幅 */
+  .hero-copy {
+    max-width: 620px;
+  }
+
+  /* 上の小さいコピー */
+  .hero-copy p:first-child {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  /* メインタイトル */
+  .hero-copy h1 {
+    font-size: 76px;
+    line-height: 1.12; /* ←詰める（重要） */
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+
+  /* 行間の微調整（詰めすぎ防止） */
+  .hero-copy h1 span {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* サブテキスト */
+  .hero-text {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 26px;
+  }
+
+  /* ボタン周り */
+  .hero-actions {
+    margin-bottom: 18px;
+  }
+
+  /* 下のバッジ */
+  .hero-badges {
+    gap: 10px;
+  }
+
+}
