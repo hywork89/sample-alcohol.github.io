@@ -3,30 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OMOTO TAKAMINE | Renewal Concept</title>
+  <title>大山酒造所 | 山の清冽を、一杯に。</title>
   <meta
     name="description"
-    content="和モダンな世界観で再設計した営業用のトップページモックです。"
+    content="山あいの清冽な水と手仕事から生まれる日本酒。大山酒造所のブランドサイト。"
   />
-  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="site-bg site-bg-1"></div>
+  <div class="site-bg site-bg-2"></div>
+  <div class="site-noise"></div>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#" class="logo">OMOTO TAKAMINE</a>
+      <a href="#" class="logo" aria-label="大山酒造所 トップへ">
+        <span class="logo-en">OYAMA SAKE BREWERY</span>
+        <span class="logo-ja">大山酒造所</span>
+      </a>
 
-      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <nav class="global-nav">
-        <a href="#concept">Concept</a>
-        <a href="#features">Value</a>
-        <a href="#story">Story</a>
-        <a href="#contact">Contact</a>
+      <nav class="global-nav" id="global-nav">
+        <a href="#about">蔵について</a>
+        <a href="#craft">酒造り</a>
+        <a href="#lineup">商品紹介</a>
+        <a href="#season">季節の酒</a>
+        <a href="#gift">贈答</a>
+        <a href="#news">お知らせ</a>
+        <a href="#contact">お問い合わせ</a>
       </nav>
     </div>
   </header>
@@ -34,145 +46,415 @@
   <main>
     <section class="hero">
       <div class="hero-bg">
-        <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
-          alt="自然と静けさを感じる背景イメージ"
-        />
+        <img src="./vinicius-4dp-GV5DoDk-unsplash.jpg" alt="酒樽が並ぶ大山酒造所のイメージ" />
       </div>
       <div class="hero-overlay"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="hero-paper"></div>
 
-      <div class="container hero-content">
-        <p class="hero-sub">Renewal Proposal</p>
-        <h1>
-          静けさと品格を、<br />
-          ひと目で伝わるサイトへ。
-        </h1>
-        <p class="hero-text">
-          写真・余白・文字設計を整え、
-          “ただ情報を載せるだけ”ではなく、
-          体験価値まで伝わるトップページへ再構成します。
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">ご相談はこちら</a>
-          <a href="#features" class="btn btn-secondary">提案内容を見る</a>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="hero-preface fade-up fade-delay-1">
+            山あいの小さな蔵から、食卓へ。
+          </p>
+
+          <h1 class="fade-up fade-delay-2">
+            <span>山の清冽を、</span>
+            <span>一杯に。</span>
+          </h1>
+
+          <p class="hero-text fade-up fade-delay-3">
+            清らかな伏流水と手仕事から生まれる、<br>
+            日々の食卓に寄り添う日本酒。
+          </p>
+
+          <div class="hero-actions fade-up fade-delay-4">
+            <a href="#lineup" class="btn btn-primary">商品紹介を見る</a>
+            <a href="#about" class="btn btn-secondary">蔵について知る</a>
+          </div>
+
+          <div class="hero-badges fade-up fade-delay-4">
+            <span>純米大吟醸</span>
+            <span>特別純米</span>
+            <span>季節限定酒</span>
+          </div>
         </div>
+
+        <div class="hero-vertical fade-up fade-delay-4" aria-hidden="true">
+          <p class="type-target" data-text="山の水、土地の米、静かな手仕事。"></p>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span></span>
+        <small>Scroll</small>
       </div>
     </section>
 
     <section class="intro section">
-      <div class="container narrow">
-        <p class="eyebrow">Current Issue</p>
-        <h2 class="section-title">現サイトで損をしやすいポイント</h2>
-        <p class="lead">
-          情報そのものはあっても、第一印象・強みの見え方・導線設計によって、
-          本来の魅力が十分に伝わっていないケースは少なくありません。
-          今回は、世界観と分かりやすさを両立する方向でブラッシュアップする想定です。
-        </p>
-      </div>
-    </section>
-
-    <section id="concept" class="concept section section-dark">
-      <div class="container concept-grid">
-        <div>
-          <p class="eyebrow">Concept</p>
-          <h2 class="section-title light">和モダン × 余白設計 × 写真訴求</h2>
-          <p class="body-text light">
-            高級感を出すために必要なのは、装飾を増やすことではなく、
-            「情報の整理」と「見せる順序」の最適化です。
-            強みを一瞬で理解できる構成へ整え、ブランド価値が自然に伝わる設計を目指します。
+      <div class="container intro-grid">
+        <div class="intro-copy reveal reveal-delay-1">
+          <p class="eyebrow">Introduction</p>
+          <h2 class="section-title">土地の空気まで伝わる、酒造所のブランドサイトへ。</h2>
+          <p class="body-text">
+            大山酒造所が届けたいのは、単なる商品情報ではありません。
+            水、米、手仕事、そして食卓との関係までを含めた、
+            一つの体験としての日本酒を伝えます。
           </p>
         </div>
-        <div class="concept-card">
-          <div class="concept-line">
-            <span>01</span>
-            <p>第一印象を整える、印象的なファーストビュー</p>
+
+        <div class="intro-stats">
+          <div class="intro-stat reveal reveal-delay-1">
+            <strong>創業</strong>
+            <span>1928年</span>
           </div>
-          <div class="concept-line">
-            <span>02</span>
-            <p>写真とコピーで伝える、強みの再定義</p>
+          <div class="intro-stat reveal reveal-delay-2">
+            <strong>仕込み水</strong>
+            <span>山あいの伏流水</span>
           </div>
-          <div class="concept-line">
-            <span>03</span>
-            <p>問い合わせまで迷わせない導線設計</p>
+          <div class="intro-stat reveal reveal-delay-3">
+            <strong>目指す味</strong>
+            <span>食に寄り添う端正な酒</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="features" class="features section">
+    <section id="about" class="about section section-dark">
+      <div class="container about-grid">
+        <div class="about-copy reveal reveal-delay-1">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title light">この土地で、まっすぐに酒を醸す。</h2>
+          <p class="body-text light">
+            山あいの自然に抱かれた土地で、受け継がれてきた手仕事を大切に
+            酒を造り続けています。派手さよりも、飲むほどに良さが伝わること。
+            食卓に寄り添い、後味まで美しく整うこと。それが私たちの目指す酒です。
+          </p>
+        </div>
+
+        <div class="about-card reveal reveal-delay-2">
+          <div class="about-line">
+            <span>一</span>
+            <div>
+              <h3>水を活かす</h3>
+              <p>山あいの清冽な伏流水を生かし、透明感のある口当たりへ仕上げます。</p>
+            </div>
+          </div>
+          <div class="about-line">
+            <span>二</span>
+            <div>
+              <h3>米を見極める</h3>
+              <p>味わいの輪郭をつくる原料を丁寧に選び、その持ち味を無理なく引き出します。</p>
+            </div>
+          </div>
+          <div class="about-line">
+            <span>三</span>
+            <div>
+              <h3>余韻を整える</h3>
+              <p>香り、旨み、後味まで流れよくつながる、静かな品格を大切にしています。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="message-band section-band">
       <div class="container">
-        <p class="eyebrow">Value</p>
-        <h2 class="section-title">ブラッシュアップの方向性</h2>
+        <div class="message-band-box reveal">
+          <span class="message-band-label">Philosophy</span>
+          <p>日々の膳に寄り添い、<br>特別な一席にも映える酒を。</p>
+        </div>
+      </div>
+    </section>
 
-        <div class="cards">
-          <article class="card reveal">
-            <h3>余白で魅せる</h3>
-            <p>
-              詰め込み感を減らし、視線の流れをコントロール。
-              上質さが伝わるレイアウトに再設計します。
-            </p>
+    <section id="craft" class="craft section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Craft</p>
+            <h2 class="section-title">静かな手仕事が、味の芯をつくる。</h2>
+          </div>
+          <p class="section-side-text">
+            香り、口当たり、旨み、余韻。そのどれか一つを強くするのではなく、
+            全体のバランスを整えることを重視した酒造りです。
+          </p>
+        </div>
+
+        <div class="craft-grid">
+          <article class="craft-card reveal reveal-delay-1">
+            <div class="craft-image">
+              <img
+                src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=1400&q=80"
+                alt="日本酒の瓶と酒器"
+              />
+            </div>
+            <div class="craft-body">
+              <h3>香りの立ち方</h3>
+              <p>盃に近づけた瞬間に静かにほどける香り。第一印象の品格を大切にしています。</p>
+            </div>
           </article>
 
-          <article class="card reveal">
-            <h3>写真を主役にする</h3>
-            <p>
-              素材の見せ方を変えるだけで印象は大きく変わります。
-              ブランド感を高めるビジュアル設計を行います。
-            </p>
+          <article class="craft-card reveal reveal-delay-2">
+            <div class="craft-image">
+              <img
+                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1400&q=80"
+                alt="日本酒と料理"
+              />
+            </div>
+            <div class="craft-body">
+              <h3>口当たりの美しさ</h3>
+              <p>一口目のやわらかさと、喉を抜けるまでのなめらかさを丁寧に整えています。</p>
+            </div>
           </article>
 
-          <article class="card reveal">
-            <h3>伝わる導線にする</h3>
-            <p>
-              見た目だけで終わらず、問い合わせや来店・相談へ自然につながる
-              導線を整えます。
-            </p>
+          <article class="craft-card reveal reveal-delay-3">
+            <div class="craft-image">
+              <img
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80"
+                alt="日本酒と酒器"
+              />
+            </div>
+            <div class="craft-body">
+              <h3>余韻の品格</h3>
+              <p>飲み終えたあとも騒がしく残らず、静かに記憶へ残る後味を目指しています。</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="story" class="story section">
-      <div class="container story-grid">
-        <div class="story-image reveal">
+    <section id="lineup" class="lineup section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Lineup</p>
+            <h2 class="section-title">商品紹介</h2>
+          </div>
+          <a href="#" class="more-link">すべての商品を見る</a>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card reveal reveal-delay-1">
+            <div class="product-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1400&q=80"
+                alt="純米大吟醸 峰"
+              />
+            </div>
+            <div class="product-body">
+              <p class="product-type">Junmai Daiginjo</p>
+              <h3>純米大吟醸「峰」</h3>
+              <p>華やかな香りと澄んだ口当たり。大山酒造所を代表する、贈答にもふさわしい一本です。</p>
+              <ul class="taste-tags">
+                <li>華やか</li>
+                <li>端正</li>
+                <li>贈答向き</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-card reveal reveal-delay-2">
+            <div class="product-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=1400&q=80"
+                alt="特別純米 白峰"
+              />
+            </div>
+            <div class="product-body">
+              <p class="product-type">Tokubetsu Junmai</p>
+              <h3>特別純米「白峰」</h3>
+              <p>米の旨みを穏やかに感じながら、後味は軽やか。日々の食卓に寄り添う定番の一本です。</p>
+              <ul class="taste-tags">
+                <li>旨み</li>
+                <li>食中酒</li>
+                <li>定番</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-card reveal reveal-delay-3">
+            <div class="product-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1400&q=80"
+                alt="季節限定酒 山影"
+              />
+            </div>
+            <div class="product-body">
+              <p class="product-type">Seasonal</p>
+              <h3>季節限定酒「山影」</h3>
+              <p>季節の空気を映した数量限定酒。旬の食材やもてなしの席に寄り添う一本です。</p>
+              <ul class="taste-tags">
+                <li>限定</li>
+                <li>旬</li>
+                <li>特別感</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pairing section section-dark">
+      <div class="container pairing-grid">
+        <div class="pairing-copy reveal reveal-delay-1">
+          <p class="eyebrow">Pairing</p>
+          <h2 class="section-title light">料理とともに楽しむ酒。</h2>
+          <p class="body-text light">
+            白身魚、焼き魚、煮物、祝い膳。和の食卓と合わせたときにこそ、
+            酒の魅力はより深く伝わります。大山酒造所では、
+            料理と寄り添う美しいバランスを大切にしています。
+          </p>
+
+          <div class="pairing-list">
+            <div class="pairing-item">
+              <strong>白身魚・前菜</strong>
+              <span>峰</span>
+            </div>
+            <div class="pairing-item">
+              <strong>焼き魚・煮物</strong>
+              <span>白峰</span>
+            </div>
+            <div class="pairing-item">
+              <strong>祝い膳・季節料理</strong>
+              <span>山影</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pairing-image reveal reveal-delay-2">
           <img
-            src="https://images.unsplash.com/photo-1510797215324-95aa89f43c33?auto=format&fit=crop&w=1200&q=80"
-            alt="和モダンな空気感を想起させるイメージ"
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80"
+            alt="日本酒と料理"
           />
         </div>
-        <div class="story-content">
-          <p class="eyebrow">Story</p>
-          <h2 class="section-title">サイトは“見た目”ではなく“体験”で選ばれる</h2>
-          <p class="body-text">
-            競合と並んだときに選ばれるサイトは、単にきれいなだけではありません。
-            何を大切にしているのか、どんな価値があるのかが、
-            写真・言葉・余白の設計によって自然に伝わることが重要です。
-          </p>
-          <p class="body-text">
-            このモックでは、既存サイトをベースに
-            「高級感」「静けさ」「信頼感」を強める方向で表現しています。
-          </p>
+      </div>
+    </section>
+
+    <section id="season" class="season section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Season</p>
+            <h2 class="section-title">季節の酒</h2>
+          </div>
+          <a href="#" class="more-link">季節の商品を見る</a>
+        </div>
+
+        <div class="season-grid">
+          <article class="season-card reveal reveal-delay-1">
+            <small>春</small>
+            <h3>やわらかな香り</h3>
+            <p>芽吹きの季節にふさわしい、軽やかで透明感のある味わい。</p>
+          </article>
+          <article class="season-card reveal reveal-delay-2">
+            <small>夏</small>
+            <h3>涼やかな口当たり</h3>
+            <p>冷やして楽しむことで、清涼感とキレが際立つ一本。</p>
+          </article>
+          <article class="season-card reveal reveal-delay-3">
+            <small>秋</small>
+            <h3>ふくらみのある旨み</h3>
+            <p>食が深まる季節に寄り添う、落ち着いた旨みと余韻。</p>
+          </article>
+          <article class="season-card reveal reveal-delay-4">
+            <small>冬</small>
+            <h3>燗でも美しい余韻</h3>
+            <p>温度によって表情を変え、静かな温もりを感じさせる味わい。</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="cta section section-dark" id="contact">
-      <div class="container narrow center">
-        <p class="eyebrow">Contact</p>
-        <h2 class="section-title light">営業用のデザインモックとしてご提案可能です</h2>
-        <p class="body-text light">
-          実際の素材やブランド要素を反映しながら、
-          TOPページの方向性設計から構築まで対応いたします。
-        </p>
-        <a href="#" class="btn btn-primary">お問い合わせ</a>
+    <section id="gift" class="gift section section-soft">
+      <div class="container gift-grid">
+        <div class="gift-image reveal reveal-delay-1">
+          <img
+            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1400&q=80"
+            alt="贈答用の日本酒"
+          />
+        </div>
+        <div class="gift-copy reveal reveal-delay-2">
+          <p class="eyebrow">Gift</p>
+          <h2 class="section-title">贈答のご案内</h2>
+          <p class="body-text">
+            お中元、お歳暮、記念日、祝いの席など、大切な場面に選ばれる酒として、
+            贈答用のご相談も承っております。味わいだけでなく、
+            贈る意味まで伝わる一本をご案内します。
+          </p>
+          <div class="gift-points">
+            <span>お中元・お歳暮</span>
+            <span>記念日</span>
+            <span>祝いの席</span>
+            <span>法人贈答</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="news section section-dark">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">News</p>
+            <h2 class="section-title light">お知らせ</h2>
+          </div>
+          <a href="#" class="more-link light-link">一覧を見る</a>
+        </div>
+
+        <div class="news-list">
+          <article class="news-item dark reveal reveal-delay-1">
+            <time datetime="2026-03-15">2026.03.15</time>
+            <div class="news-body">
+              <h3>春季限定酒「山影」発売のお知らせ</h3>
+              <p>軽やかな香りと透明感のある味わいを楽しめる、数量限定酒をご用意しました。</p>
+            </div>
+          </article>
+
+          <article class="news-item dark reveal reveal-delay-2">
+            <time datetime="2026-02-20">2026.02.20</time>
+            <div class="news-body">
+              <h3>贈答用木箱仕様の受付を開始しました</h3>
+              <p>季節のご挨拶やお祝いの席に向けた、贈答包装対応を承っております。</p>
+            </div>
+          </article>
+
+          <article class="news-item dark reveal reveal-delay-3">
+            <time datetime="2026-01-18">2026.01.18</time>
+            <div class="news-body">
+              <h3>蔵見学のご案内を掲載しました</h3>
+              <p>見学日程やお申し込み方法について、詳細をご案内しております。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta section">
+      <div class="container">
+        <div class="cta-box reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">お問い合わせ</h2>
+          <p class="body-text">
+            商品に関するご相談、贈答のご依頼、お取引に関するお問い合わせなど、
+            各種ご相談を承っております。
+          </p>
+          <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">オンラインショップへ</a>
+            <a href="#" class="btn btn-ghost">お問い合わせはこちら</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© Renewal Mockup</p>
-      <p>Designed for proposal use.</p>
+      <div>
+        <p class="footer-logo">大山酒造所</p>
+        <p class="footer-copy">山の清冽を、一杯に。</p>
+      </div>
+      <p class="footer-right">© 2026 Oyama Sake Brewery. All Rights Reserved.</p>
     </div>
   </footer>
 
