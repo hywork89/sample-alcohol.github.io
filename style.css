@@ -339,8 +339,17 @@ ul {
 .hero-bg,
 .hero-bg img,
 .hero-overlay,
-.hero-paper {
+.hero-paper,
+.hero-grid,
+.hero-emblem {
   position: absolute;
+}
+
+.hero-bg,
+.hero-bg img,
+.hero-overlay,
+.hero-paper,
+.hero-grid {
   inset: 0;
 }
 
@@ -377,6 +386,15 @@ ul {
   pointer-events: none;
 }
 
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
 .hero-glow {
   position: absolute;
   border-radius: 50%;
@@ -399,6 +417,17 @@ ul {
   height: 220px;
   background: rgba(255,255,255,0.04);
   animation-delay: -4s;
+}
+
+.hero-emblem {
+  right: 10%;
+  bottom: 10%;
+  z-index: 2;
+  color: rgba(255,255,255,0.04);
+  font-size: clamp(10rem, 16vw, 20rem);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
 }
 
 @keyframes glowMove {
@@ -438,13 +467,13 @@ ul {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.04em;
+  gap: 0;
   font-size: clamp(3rem, 6.2vw, 5.8rem);
-  line-height: 1.02;
-  letter-spacing: 0.03em;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
   font-weight: 400;
   text-shadow: 0 4px 30px rgba(0,0,0,0.35);
-  max-width: 6.2em;
+  max-width: none;
 }
 
 .hero h1 span {
@@ -452,7 +481,7 @@ ul {
 }
 
 .hero h1 span:last-child {
-  padding-left: 0.28em;
+  padding-left: 0.3em;
 }
 
 .hero-text {
@@ -484,6 +513,7 @@ ul {
   border: 1px solid rgba(255,255,255,0.1);
   color: rgba(255,255,255,0.9);
   font-size: 0.84rem;
+  backdrop-filter: blur(6px);
 }
 
 .hero-vertical {
@@ -1046,33 +1076,102 @@ ul {
   }
 
   .hero-inner {
-    grid-template-columns: minmax(0, 740px) minmax(80px, 1fr);
-    gap: 24px;
-    padding-top: 130px;
-    padding-bottom: 66px;
+    grid-template-columns: minmax(0, 760px) minmax(110px, 1fr);
+    gap: 20px;
+    padding-top: 126px;
+    padding-bottom: 64px;
   }
 
   .hero-copy {
-    max-width: 720px;
+    max-width: 760px;
+    transform: translateY(8px);
   }
 
   .hero h1 {
-    font-size: clamp(4.2rem, 5.4vw, 6rem);
-    max-width: 6em;
+    font-size: 5.35rem;
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    gap: 0;
+    max-width: none;
+  }
+
+  .hero h1 span:last-child {
+    padding-left: 0.42em;
+    margin-top: -0.02em;
+  }
+
+  .hero-preface {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
   }
 
   .hero-text {
-    max-width: 580px;
+    max-width: 520px;
+    margin-top: 28px;
+    font-size: 0.98rem;
+    line-height: 1.95;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+  }
+
+  .hero-badges {
+    margin-top: 20px;
+  }
+
+  .hero-vertical {
+    justify-content: flex-end;
+    padding-right: 10px;
   }
 
   .hero-vertical .type-target {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    min-height: 14.5em;
   }
 
   .message-band-box {
     max-width: 1240px;
     margin-inline: auto;
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 2100px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 780px) minmax(110px, 1fr);
+    gap: 18px;
+    padding-top: 128px;
+    padding-bottom: 62px;
+  }
+
+  .hero-copy {
+    max-width: 780px;
+    transform: translateY(10px);
+  }
+
+  .hero h1 {
+    font-size: 5.55rem;
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    max-width: none;
+  }
+
+  .hero h1 span:first-child {
+    padding-left: 0;
+  }
+
+  .hero h1 span:last-child {
+    padding-left: 0.43em;
+    margin-top: -0.025em;
+  }
+
+  .hero-text {
+    max-width: 540px;
+  }
+
+  .hero-vertical .type-target {
+    font-size: 0.74rem;
   }
 }
 
@@ -1121,6 +1220,10 @@ ul {
 
   .section-band {
     margin-top: -54px;
+  }
+
+  .hero-emblem {
+    display: none;
   }
 }
 
@@ -1208,6 +1311,7 @@ ul {
 
   .hero h1 span:last-child {
     padding-left: 0.18em;
+    margin-top: 0;
   }
 
   .hero-preface {
@@ -1297,140 +1401,5 @@ ul {
 
   .scroll-indicator {
     bottom: 6px;
-  }
-}
-@media (min-width: 1600px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 660px) minmax(120px, 1fr);
-    gap: 28px;
-    padding-top: 126px;
-    padding-bottom: 60px;
-  }
-
-  .hero-copy {
-    max-width: 660px;
-  }
-
-  .hero h1 {
-    font-size: clamp(4rem, 4.9vw, 5.35rem);
-    line-height: 0.98;
-    letter-spacing: 0.01em;
-    max-width: 5.4em;
-    gap: 0.02em;
-  }
-
-  .hero h1 span:last-child {
-    padding-left: 0.16em;
-  }
-
-  .hero-preface {
-    margin-bottom: 18px;
-    font-size: 0.94rem;
-  }
-
-  .hero-text {
-    max-width: 500px;
-    margin-top: 26px;
-    font-size: 0.95rem;
-    line-height: 1.9;
-  }
-
-  .hero-actions {
-    margin-top: 28px;
-  }
-
-  .hero-badges {
-    margin-top: 20px;
-  }
-
-  .hero-vertical {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-vertical .type-target {
-    font-size: 0.74rem;
-    letter-spacing: 0.1em;
-    min-height: 14em;
-  }
-}
-@media (min-width: 1800px) and (max-width: 2100px) {
-  .hero h1 {
-    font-size: 4.7rem;
-    line-height: 0.96;
-    max-width: 5.2em;
-  }
-
-  .hero h1 span:last-child {
-    padding-left: 0.12em;
-  }
-
-  .hero-copy {
-    transform: translateY(-6px);
-  }
-
-  .hero-text {
-    max-width: 470px;
-  }
-}
-@media (min-width: 1800px) and (max-width: 2100px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 760px) minmax(120px, 1fr);
-    gap: 20px;
-    padding-top: 126px;
-    padding-bottom: 64px;
-  }
-
-  .hero-copy {
-    max-width: 760px;
-    transform: translateY(8px);
-  }
-
-  .hero h1 {
-    font-size: 5.35rem;
-    line-height: 0.94;
-    letter-spacing: -0.01em;
-    gap: 0;
-    max-width: none;
-  }
-
-  .hero h1 span:first-child {
-    padding-left: 0;
-  }
-
-  .hero h1 span:last-child {
-    padding-left: 0.42em;
-    margin-top: -0.02em;
-  }
-
-  .hero-preface {
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-  }
-
-  .hero-text {
-    max-width: 520px;
-    margin-top: 28px;
-    font-size: 0.98rem;
-    line-height: 1.95;
-  }
-
-  .hero-actions {
-    margin-top: 30px;
-  }
-
-  .hero-badges {
-    margin-top: 20px;
-  }
-
-  .hero-vertical {
-    justify-content: flex-end;
-    padding-right: 10px;
-  }
-
-  .hero-vertical .type-target {
-    font-size: 0.76rem;
-    letter-spacing: 0.1em;
-    min-height: 14.5em;
   }
 }
