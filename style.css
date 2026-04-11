@@ -1373,3 +1373,64 @@ ul {
     max-width: 470px;
   }
 }
+@media (min-width: 1800px) and (max-width: 2100px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 760px) minmax(120px, 1fr);
+    gap: 20px;
+    padding-top: 126px;
+    padding-bottom: 64px;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+    transform: translateY(8px);
+  }
+
+  .hero h1 {
+    font-size: 5.35rem;
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    gap: 0;
+    max-width: none;
+  }
+
+  .hero h1 span:first-child {
+    padding-left: 0;
+  }
+
+  .hero h1 span:last-child {
+    padding-left: 0.42em;
+    margin-top: -0.02em;
+  }
+
+  .hero-preface {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  .hero-text {
+    max-width: 520px;
+    margin-top: 28px;
+    font-size: 0.98rem;
+    line-height: 1.95;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+  }
+
+  .hero-badges {
+    margin-top: 20px;
+  }
+
+  .hero-vertical {
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+
+  .hero-vertical .type-target {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    min-height: 14.5em;
+  }
+}
