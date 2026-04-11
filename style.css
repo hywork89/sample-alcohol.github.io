@@ -1973,7 +1973,7 @@ ul {
   inset: -6%;
   z-index: 1;
   pointer-events: none;
-  background: url("./fv-back.png") center center / cover no-repeat;
+  background: url("./fv-back2.png") center center / cover no-repeat;
   opacity: 0;
   transform: scale(1.08);
   filter: blur(10px);
