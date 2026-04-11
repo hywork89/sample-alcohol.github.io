@@ -1758,3 +1758,204 @@ ul {
     padding: 22px 20px;
   }
 }
+/* =========================
+   FVタイトル意匠強化
+========================= */
+
+.hero-title {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.08em;
+  margin: 0;
+}
+
+.hero-title::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0.12em;
+  bottom: 0.18em;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 178, 124, 0),
+    rgba(211, 178, 124, 0.7),
+    rgba(211, 178, 124, 0)
+  );
+  box-shadow: 0 0 14px rgba(211, 178, 124, 0.18);
+}
+
+.hero-title-line {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.hero-title-line::before {
+  content: attr(class);
+  display: none;
+}
+
+.hero-title-line-1::after,
+.hero-title-line-2::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0.08em 0;
+  height: 0.34em;
+  z-index: -1;
+  filter: blur(18px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hero-title-line-1::after {
+  background: radial-gradient(
+    ellipse at 35% 50%,
+    rgba(154, 116, 66, 0.34),
+    rgba(154, 116, 66, 0)
+  );
+}
+
+.hero-title-line-2::after {
+  background: radial-gradient(
+    ellipse at 45% 50%,
+    rgba(211, 178, 124, 0.22),
+    rgba(211, 178, 124, 0)
+  );
+}
+
+.hero-title-line-2 {
+  padding-left: 0.28em;
+}
+
+.hero-title .hero-title-line {
+  text-shadow:
+    0 3px 24px rgba(0, 0, 0, 0.34),
+    0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* 1900px以上は少し締める */
+@media (min-width: 1900px) {
+  .hero-title {
+    gap: 0.05em;
+  }
+
+  .hero-title::before {
+    left: -16px;
+    top: 0.14em;
+    bottom: 0.2em;
+  }
+
+  .hero-title-line-2 {
+    padding-left: 0.24em;
+  }
+}
+
+/* SPは装飾を少し弱める */
+@media (max-width: 768px) {
+  .hero-title::before {
+    left: -10px;
+    top: 0.1em;
+    bottom: 0.15em;
+  }
+
+  .hero-title-line-2 {
+    padding-left: 0.14em;
+  }
+
+  .hero-title-line-1::after,
+  .hero-title-line-2::after {
+    height: 0.24em;
+    filter: blur(12px);
+    opacity: 0.42;
+  }
+}
+
+
+/* =========================
+   右下 TOPへ戻るボタン
+========================= */
+
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 18, 0.88), rgba(10, 10, 10, 0.92));
+  color: #f7f1e8;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  z-index: 140;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.94);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease,
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-top: 1.5px solid rgba(211, 178, 124, 0.92);
+  border-left: 1.5px solid rgba(211, 178, 124, 0.92);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.back-to-top span {
+  position: absolute;
+  left: 50%;
+  bottom: 13px;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: rgba(247, 241, 232, 0.9);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  background:
+    linear-gradient(180deg, rgba(28, 28, 28, 0.94), rgba(14, 14, 14, 0.96));
+  border-color: rgba(211, 178, 124, 0.26);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    right: 14px;
+    bottom: 14px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .back-to-top::before {
+    top: 12px;
+    width: 9px;
+    height: 9px;
+  }
+
+  .back-to-top span {
+    bottom: 10px;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+}

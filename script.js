@@ -97,3 +97,24 @@ window.addEventListener("load", () => {
     typeWriter(typeTarget);
   }, 900);
 });
+const backToTopBtn = document.querySelector(".back-to-top");
+
+if (backToTopBtn) {
+  const toggleBackToTop = () => {
+    if (window.scrollY > 420) {
+      backToTopBtn.classList.add("is-visible");
+    } else {
+      backToTopBtn.classList.remove("is-visible");
+    }
+  };
+
+  window.addEventListener("scroll", toggleBackToTop);
+  toggleBackToTop();
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
