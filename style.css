@@ -467,9 +467,9 @@ ul {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.07em;
   font-size: clamp(3rem, 6.2vw, 5.8rem);
-  line-height: 0.98;
+  line-height: 1.02;
   letter-spacing: 0.01em;
   font-weight: 400;
   text-shadow: 0 4px 30px rgba(0,0,0,0.35);
@@ -481,7 +481,7 @@ ul {
 }
 
 .hero h1 span:last-child {
-  padding-left: 0.3em;
+  padding-left: 0.28em;
 }
 
 .hero-text {
@@ -1077,27 +1077,27 @@ ul {
 
   .hero-inner {
     grid-template-columns: minmax(0, 760px) minmax(110px, 1fr);
-    gap: 20px;
-    padding-top: 126px;
-    padding-bottom: 64px;
+    gap: 18px;
+    padding-top: 108px;
+    padding-bottom: 42px;
   }
 
   .hero-copy {
     max-width: 760px;
-    transform: translateY(8px);
+    transform: translateY(-6px);
   }
 
   .hero h1 {
     font-size: 5.35rem;
-    line-height: 0.94;
+    line-height: 1.01;
     letter-spacing: -0.01em;
-    gap: 0;
+    gap: 0.06em;
     max-width: none;
   }
 
   .hero h1 span:last-child {
-    padding-left: 0.42em;
-    margin-top: -0.02em;
+    padding-left: 0.36em;
+    margin-top: 0;
   }
 
   .hero-preface {
@@ -1107,17 +1107,17 @@ ul {
 
   .hero-text {
     max-width: 520px;
-    margin-top: 28px;
+    margin-top: 24px;
     font-size: 0.98rem;
-    line-height: 1.95;
+    line-height: 1.9;
   }
 
   .hero-actions {
-    margin-top: 30px;
+    margin-top: 26px;
   }
 
   .hero-badges {
-    margin-top: 20px;
+    margin-top: 18px;
   }
 
   .hero-vertical {
@@ -1140,20 +1140,21 @@ ul {
 @media (min-width: 1800px) and (max-width: 2100px) {
   .hero-inner {
     grid-template-columns: minmax(0, 780px) minmax(110px, 1fr);
-    gap: 18px;
-    padding-top: 128px;
-    padding-bottom: 62px;
+    gap: 16px;
+    padding-top: 100px;
+    padding-bottom: 34px;
   }
 
   .hero-copy {
     max-width: 780px;
-    transform: translateY(10px);
+    transform: translateY(-14px);
   }
 
   .hero h1 {
     font-size: 5.55rem;
-    line-height: 0.92;
+    line-height: 1.02;
     letter-spacing: -0.015em;
+    gap: 0.05em;
     max-width: none;
   }
 
@@ -1162,12 +1163,25 @@ ul {
   }
 
   .hero h1 span:last-child {
-    padding-left: 0.43em;
-    margin-top: -0.025em;
+    padding-left: 0.36em;
+    margin-top: 0;
+  }
+
+  .hero-preface {
+    margin-bottom: 14px;
   }
 
   .hero-text {
     max-width: 540px;
+    margin-top: 22px;
+  }
+
+  .hero-actions {
+    margin-top: 24px;
+  }
+
+  .hero-badges {
+    margin-top: 16px;
   }
 
   .hero-vertical .type-target {
@@ -1305,7 +1319,8 @@ ul {
   .hero h1 {
     font-size: clamp(2.5rem, 12vw, 4.2rem);
     letter-spacing: 0.04em;
-    line-height: 1.06;
+    line-height: 1.08;
+    gap: 0.05em;
     max-width: none;
   }
 
