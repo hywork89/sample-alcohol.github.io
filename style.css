@@ -1581,3 +1581,180 @@ ul {
   }
 
 }
+@media (min-width: 1900px) {
+
+  /* バッジの下余白を詰める */
+  .hero-badges {
+    margin-bottom: 8px; /* ←今よりかなり詰める */
+  }
+
+  /* スクロール表示の位置を上げる */
+  .scroll-indicator {
+    bottom: 16px; /* ←デフォルトより上に寄せる */
+  }
+
+}
+/* =========================
+   INTRO セクション質感アップ
+========================= */
+
+.intro.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(154, 116, 66, 0.08), transparent 24%),
+    radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.45), transparent 20%),
+    linear-gradient(180deg, #f7f1e8 0%, #efe7db 100%);
+}
+
+.intro.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(255,255,255,0.12), transparent 18%, transparent 82%, rgba(255,255,255,0.08)),
+    radial-gradient(circle at 22% 44%, rgba(255,255,255,0.18), transparent 18%);
+  opacity: 0.8;
+}
+
+.intro.section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.035));
+  opacity: 0.5;
+}
+
+.intro-grid {
+  position: relative;
+  z-index: 1;
+  align-items: start;
+  gap: 64px;
+}
+
+.intro-copy {
+  position: relative;
+  padding-top: 8px;
+}
+
+.intro-copy .eyebrow {
+  margin-bottom: 18px;
+  color: #a17642;
+  letter-spacing: 0.2em;
+}
+
+.intro-copy .section-title {
+  color: #1e1a16;
+  line-height: 1.42;
+  letter-spacing: 0.06em;
+  text-wrap: balance;
+}
+
+.intro-copy .body-text {
+  max-width: 34em;
+  color: #5f564d;
+  line-height: 2.05;
+}
+
+.intro-stats {
+  gap: 20px;
+}
+
+.intro-stat {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.76), rgba(255,255,255,0.58));
+  border: 1px solid rgba(154, 116, 66, 0.08);
+  border-radius: 28px;
+  padding: 28px 28px;
+  box-shadow:
+    0 18px 40px rgba(70, 50, 30, 0.06),
+    inset 0 1px 0 rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.intro-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(154, 116, 66, 0.05), transparent 35%),
+    linear-gradient(to bottom, rgba(255,255,255,0.18), transparent 28%);
+  pointer-events: none;
+}
+
+.intro-stat::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(154, 116, 66, 0.55), rgba(154, 116, 66, 0.12));
+  opacity: 0.7;
+}
+
+.intro-stat strong,
+.intro-stat span {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-stat strong {
+  margin-bottom: 8px;
+  font-size: 1.08rem;
+  color: #2b241d;
+}
+
+.intro-stat span {
+  color: #655b52;
+}
+
+@media (min-width: 1400px) {
+  .intro.section {
+    padding-top: 132px;
+    padding-bottom: 132px;
+  }
+
+  .intro-grid {
+    gap: 74px;
+  }
+
+  .intro-copy .section-title {
+    font-size: clamp(3rem, 4.1vw, 4.4rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .intro.section {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
+
+  .intro-grid {
+    gap: 28px;
+  }
+
+  .intro-copy .eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .intro-copy .section-title {
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+
+  .intro-copy .body-text {
+    line-height: 1.95;
+  }
+
+  .intro-stat {
+    border-radius: 22px;
+    padding: 22px 20px;
+  }
+}
