@@ -153,3 +153,53 @@ function updateHeroParallax() {
 window.addEventListener("scroll", updateHeroParallax, { passive: true });
 window.addEventListener("load", updateHeroParallax);
 window.addEventListener("resize", updateHeroParallax);
+
+/* =========================
+   Custom Cursor
+========================= */
+
+const cursorDot = document.querySelector(".cursor-dot");
+const cursorRing = document.querySelector(".cursor-ring");
+const hoverTargets = document.querySelectorAll("a, button, .btn, .back-to-top");
+
+if (cursorDot && cursorRing && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  let ringX = mouseX;
+  let ringY = mouseY;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+
+    document.body.classList.add("cursor-active");
+  });
+
+  document.addEventListener("mouseleave", () => {
+    document.body.classList.remove("cursor-active");
+  });
+
+  function animateCursor() {
+    ringX += (mouseX - ringX) * 0.16;
+    ringY += (mouseY - ringY) * 0.16;
+
+    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+
+  hoverTargets.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursorRing.classList.add("is-hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      cursorRing.classList.remove("is-hover");
+    });
+  });
+}
