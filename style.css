@@ -2324,3 +2324,59 @@ ul {
       linear-gradient(to right, rgba(6,6,6,0.78) 0%, rgba(6,6,6,0.42) 58%, rgba(6,6,6,0.6) 100%);
   }
 }
+@media (max-width: 768px) {
+
+  .hero::before {
+    opacity: 0.14; /* ← 0.08 → 少し戻す */
+    inset: -6%;    /* ← 画面に近づける */
+    transform:
+      translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.6), 0)
+      scale(1.06); /* ← 少しだけ大きく */
+    filter: blur(2px); /* ← ぼかし弱める */
+  }
+
+}
+@media (max-width: 768px) {
+
+  .hero::after {
+    background:
+      radial-gradient(circle at 20% 80%, rgba(211,178,124,0.12), transparent 26%),
+      radial-gradient(circle at 85% 15%, rgba(255,255,255,0.06), transparent 20%);
+  }
+
+}
+/* =========================================
+   和柄：外側 → 内側 アニメーション
+========================================= */
+
+/* 初期値 */
+:root {
+  --fv-pattern-intro: 0;
+}
+
+/* PC / SP共通の和柄アニメ計算 */
+.hero::before {
+  opacity: calc(0.06 + (var(--fv-pattern-intro) * 0.10));
+  inset: calc(-18% + (var(--fv-pattern-intro) * 12%));
+  transform:
+    translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.6), 0)
+    scale(calc(1.22 - (var(--fv-pattern-intro) * 0.16)));
+  filter: blur(calc(10px - (var(--fv-pattern-intro) * 7px)));
+  transition:
+    inset 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.5s ease,
+    filter 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* SPは少し見せる量を増やす */
+@media (max-width: 768px) {
+  .hero::before {
+    opacity: calc(0.08 + (var(--fv-pattern-intro) * 0.12));
+    inset: calc(-12% + (var(--fv-pattern-intro) * 6%));
+    transform:
+      translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.56), 0)
+      scale(calc(1.16 - (var(--fv-pattern-intro) * 0.10)));
+    filter: blur(calc(6px - (var(--fv-pattern-intro) * 4px)));
+  }
+}

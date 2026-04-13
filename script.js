@@ -192,6 +192,20 @@ function updateHeroParallax() {
 }
 
 /* =========================
+   FV 和柄イントロアニメ
+   外側 → 内側
+========================= */
+function runHeroPatternIntro() {
+  if (!hero) return;
+
+  hero.style.setProperty("--fv-pattern-intro", "0");
+
+  window.setTimeout(() => {
+    hero.style.setProperty("--fv-pattern-intro", "1");
+  }, 120);
+}
+
+/* =========================
    SPイントロ
    - SPのみ
    - 初回もリロードも毎回表示
@@ -235,6 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleBackToTop();
   updateHeroParallax();
   runIntroOverlay();
+  runHeroPatternIntro();
 });
 
 window.addEventListener("load", () => {
@@ -260,14 +275,3 @@ window.addEventListener("resize", () => {
     introOverlay.style.display = "none";
   }
 });
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("is-visible");
-    }
-  });
-},{ threshold: 0.2 });
-
-reveals.forEach(el => observer.observe(el));
