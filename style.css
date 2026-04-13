@@ -1738,3 +1738,258 @@ ul {
     letter-spacing: 0.12em;
   }
 }
+/* =========================================
+   SP最終調整
+   - FVを高級旅館寄りに
+   - 文字位置を少し下げる
+   - セクション境目の波を強化
+========================================= */
+@media (max-width: 768px) {
+
+  /* =========================
+     FV全体
+  ========================= */
+  .hero {
+    min-height: 100svh;
+    padding-bottom: 54px;
+  }
+
+  .hero::before {
+    opacity: 0.16;
+    inset: -10%;
+    background-position: center center;
+    transform: translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.55), 0) scale(1.06);
+    filter: blur(4px);
+  }
+
+  .hero::after {
+    background:
+      radial-gradient(circle at 18% 78%, rgba(211, 178, 124, 0.10), transparent 24%),
+      radial-gradient(circle at 84% 18%, rgba(255,255,255,0.06), transparent 18%);
+    transform: translate3d(0, calc(var(--fv-light-y, 0px) * 0.55), 0);
+  }
+
+  .hero-bg img {
+    object-position: center center;
+    filter: saturate(0.78) brightness(0.28) contrast(1.08);
+    transform: scale(1.04);
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.24), rgba(0,0,0,0.66)),
+      linear-gradient(to right, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.44) 56%, rgba(5,5,5,0.62) 100%);
+  }
+
+  .hero-paper {
+    opacity: 0.72;
+  }
+
+  .hero-grid {
+    opacity: 0.1;
+    background-size: 82px 82px;
+  }
+
+  /* =========================
+     FVの中身位置
+  ========================= */
+  .hero-inner {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding-top: 124px;
+    padding-bottom: 96px;
+    gap: 14px;
+  }
+
+  .hero-copy {
+    max-width: none;
+    transform: translateY(12px);
+  }
+
+  .hero-preface {
+    margin: 0 0 14px;
+    font-size: 0.82rem;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.82);
+  }
+
+  .hero-title {
+    gap: 0.02em;
+    margin: 0;
+  }
+
+  .hero-title::before {
+    left: -10px;
+    top: 0.18em;
+    bottom: 0.22em;
+    opacity: 0.92;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 12vw, 4.35rem);
+    line-height: 1.06;
+    letter-spacing: 0.01em;
+    text-shadow:
+      0 8px 30px rgba(0,0,0,0.34),
+      0 2px 10px rgba(0,0,0,0.18);
+  }
+
+  .hero-title-line-2,
+  .hero h1 span:last-child {
+    padding-left: 0.14em;
+  }
+
+  .hero-title-line-1::after,
+  .hero-title-line-2::after {
+    height: 0.24em;
+    filter: blur(12px);
+    opacity: 0.44;
+  }
+
+  .hero-text {
+    max-width: 18.5em;
+    margin-top: 18px;
+    font-size: 0.93rem;
+    line-height: 1.92;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .hero-text br {
+    display: none;
+  }
+
+  .hero-actions {
+    margin-top: 22px;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 18px;
+    font-size: 0.92rem;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.02);
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .hero-badges {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .hero-badges span {
+    padding: 7px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    background: rgba(255,255,255,0.07);
+  }
+
+  .hero-badges span:nth-child(3) {
+    display: none;
+  }
+
+  .hero-vertical {
+    display: none;
+  }
+
+  .scroll-indicator {
+    bottom: 10px !important;
+    font-size: 0.58rem !important;
+    opacity: 0.78 !important;
+  }
+
+  .scroll-indicator span {
+    height: 22px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .scroll-indicator::after {
+    height: 14px !important;
+  }
+
+  /* =========================
+     波の境目をはっきり見せる
+  ========================= */
+  .section-wave-top {
+    position: relative;
+    margin-top: 0;
+  }
+
+  .section-wave-top::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -26px;
+    width: 100%;
+    height: 30px;
+    background: var(--bg-soft);
+    clip-path: path("M 0 30 C 48 16, 96 8, 150 8 C 220 8, 278 22, 340 26 C 374 28, 398 30, 414 30 L 414 0 L 0 0 Z");
+    z-index: 5;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  /* 黒セクションの上端を少し持ち上げる */
+  .pairing.section-wave-top,
+  .news.section-wave-top {
+    padding-top: 74px;
+    margin-top: -6px;
+  }
+
+  /* craft → lineup のつながりもSPで自然に */
+  #craft.section {
+    padding-bottom: 82px;
+  }
+
+  #craft.section::after {
+    height: 64px;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(20,20,20,0) 0%,
+        rgba(20,20,20,0.025) 30%,
+        rgba(20,20,20,0.04) 56%,
+        rgba(20,20,20,0) 100%
+      );
+  }
+
+  #lineup.section {
+    margin-top: -12px;
+    padding-top: 86px;
+  }
+
+  #lineup.section::before {
+    height: 68px;
+    background:
+      radial-gradient(
+        ellipse at center top,
+        rgba(255,255,255,0.34) 0%,
+        rgba(255,255,255,0.12) 36%,
+        rgba(255,255,255,0) 76%
+      );
+  }
+
+  /* メッセージ帯も少しだけ上品に */
+  .message-band.section-band {
+    margin-top: -34px;
+    padding-bottom: 6px;
+  }
+
+  .message-band-box {
+    border-radius: 22px;
+    padding: 24px 18px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
+
+  .message-band-box p {
+    font-size: 1.04rem;
+    line-height: 1.8;
+  }
+}
