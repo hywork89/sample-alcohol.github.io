@@ -3136,7 +3136,7 @@ ul {
     z-index: 160;
   }
 }
-// スマホの時だけ改行させるクラス
+
 .br-sp {
     display: none;
 }
@@ -3513,5 +3513,224 @@ img:hover {
 @media (min-width: 1900px) {
   .scroll-indicator {
     bottom: 18px !important;
+  }
+}
+/* =========================
+   緩い波の境目
+========================= */
+.section-wave-top {
+  position: relative;
+  margin-top: 70px;
+}
+
+.section-wave-top::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -69px;
+  width: 100%;
+  height: 70px;
+  z-index: 3;
+  pointer-events: none;
+  background: var(--bg-soft);
+  clip-path: path("M 0 70 C 140 18, 320 10, 520 34 C 720 58, 930 84, 1160 48 C 1340 20, 1520 10, 1720 34 C 1860 50, 1980 64, 2000 70 L 2000 0 L 0 0 Z");
+}
+
+/* section-dark 用に自然になじませる */
+.section-dark.section-wave-top::before {
+  background: var(--bg-soft);
+}
+
+/* ベージュ系セクションに黒背景から入る場合 */
+.section-soft.section-wave-top::before,
+.section.section-wave-top::before {
+  background: #141414;
+}
+
+/* SP */
+@media (max-width: 768px) {
+  .section-wave-top {
+    margin-top: 42px;
+  }
+
+  .section-wave-top::before {
+    top: -41px;
+    height: 42px;
+    clip-path: path("M 0 42 C 70 14, 150 8, 250 22 C 330 34, 390 42, 390 42 L 390 0 L 0 0 Z");
+  }
+}
+/* =========================================
+   craft → lineup セクション境目 修正版
+   一番下にそのまま追記
+========================================= */
+
+/* 既存の帯っぽい区切りを無効化しやすくする */
+#craft.section,
+#lineup.section {
+  position: relative;
+}
+
+/* craft 下部に空気感だけ残す */
+#craft.section {
+  padding-bottom: 128px !important;
+  margin-bottom: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+
+#craft.section::before {
+  display: none !important;
+}
+
+#craft.section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 132px;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(20, 20, 20, 0) 0%,
+      rgba(20, 20, 20, 0.035) 18%,
+      rgba(20, 20, 20, 0.06) 40%,
+      rgba(20, 20, 20, 0.02) 62%,
+      rgba(20, 20, 20, 0) 100%
+    );
+}
+
+/* lineup を少し持ち上げて自然接続 */
+#lineup.section {
+  z-index: 1;
+  margin-top: -44px !important;
+  padding-top: 154px !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.04)),
+    var(--bg-soft) !important;
+}
+
+/* lineup 上部に柔らかい受けの光 */
+#lineup.section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 154px;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse at center top,
+      rgba(255, 255, 255, 0.40) 0%,
+      rgba(255, 255, 255, 0.2) 30%,
+      rgba(255, 255, 255, 0.06) 52%,
+      rgba(255, 255, 255, 0) 76%
+    );
+}
+
+#lineup.section::after {
+  display: none !important;
+}
+
+#lineup.section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* 商品紹介見出しの立ち上がりを少し整える */
+#lineup .section-head {
+  margin-bottom: 46px;
+}
+
+#lineup .section-title {
+  margin-bottom: 16px;
+}
+
+/* セクション上端をほんの少し波っぽく見せる */
+#lineup.section {
+  clip-path: inset(0 round 0);
+}
+
+#lineup.section .container::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  right: -40px;
+  top: -74px;
+  height: 74px;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--bg-soft);
+  clip-path: ellipse(62% 100% at 50% 100%);
+  opacity: 0.9;
+}
+
+/* ただし見出しやカードは前面 */
+#lineup .section-head,
+#lineup .product-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* SP調整 */
+@media (max-width: 768px) {
+  #craft.section {
+    padding-bottom: 96px !important;
+  }
+
+  #craft.section::after {
+    height: 92px;
+  }
+
+  #lineup.section {
+    margin-top: -26px !important;
+    padding-top: 104px !important;
+  }
+
+  #lineup.section::before {
+    height: 96px;
+  }
+
+  #lineup.section .container::before {
+    left: -20px;
+    right: -20px;
+    top: -46px;
+    height: 46px;
+  }
+
+  #lineup .section-head {
+    margin-bottom: 34px;
+  }
+}
+
+/* さらに広い画面で自然に */
+@media (min-width: 1400px) {
+  #craft.section {
+    padding-bottom: 142px !important;
+  }
+
+  #craft.section::after {
+    height: 146px;
+  }
+
+  #lineup.section {
+    margin-top: -52px !important;
+    padding-top: 168px !important;
+  }
+
+  #lineup.section::before {
+    height: 168px;
+  }
+
+  #lineup.section .container::before {
+    top: -82px;
+    height: 82px;
   }
 }
