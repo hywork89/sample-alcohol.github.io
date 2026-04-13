@@ -1993,3 +1993,286 @@ ul {
     line-height: 1.8;
   }
 }
+/* =========================================
+   SP最終上書き
+   - 波形修正
+   - FV最終調整
+   - FVボタン高級感寄せ
+========================================= */
+@media (max-width: 768px) {
+
+  /* =========================
+     FV全体バランス
+  ========================= */
+  .hero {
+    min-height: 100svh;
+    padding-bottom: 58px;
+  }
+
+  .hero-bg img {
+    object-position: center center;
+    filter: saturate(0.76) brightness(0.26) contrast(1.08);
+    transform: scale(1.03);
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.68)),
+      linear-gradient(to right, rgba(6,6,6,0.84) 0%, rgba(6,6,6,0.46) 58%, rgba(6,6,6,0.64) 100%);
+  }
+
+  .hero-paper {
+    opacity: 0.64;
+  }
+
+  .hero-grid {
+    opacity: 0.08;
+    background-size: 74px 74px;
+  }
+
+  .hero::before {
+    opacity: 0.14;
+    inset: -8%;
+    transform: translate3d(0, calc(var(--fv-pattern-y, 0px) * 0.5), 0) scale(1.04);
+    filter: blur(3px);
+  }
+
+  .hero::after {
+    transform: translate3d(0, calc(var(--fv-light-y, 0px) * 0.5), 0);
+    background:
+      radial-gradient(circle at 18% 80%, rgba(211, 178, 124, 0.08), transparent 24%),
+      radial-gradient(circle at 84% 18%, rgba(255,255,255,0.05), transparent 18%);
+  }
+
+  /* =========================
+     FV文字位置
+  ========================= */
+  .hero-inner {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding-top: 132px;
+    padding-bottom: 88px;
+    gap: 12px;
+  }
+
+  .hero-copy {
+    max-width: none;
+    transform: translateY(20px);
+  }
+
+  .hero-preface {
+    margin: 0 0 14px;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .hero-title {
+    margin: 0;
+    gap: 0.01em;
+  }
+
+  .hero-title::before {
+    left: -8px;
+    top: 0.2em;
+    bottom: 0.22em;
+    opacity: 0.86;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.1rem, 12vw, 4.5rem);
+    line-height: 1.04;
+    letter-spacing: 0.01em;
+    text-shadow:
+      0 8px 30px rgba(0,0,0,0.34),
+      0 2px 10px rgba(0,0,0,0.18);
+  }
+
+  .hero-title-line-2,
+  .hero h1 span:last-child {
+    padding-left: 0.12em;
+  }
+
+  .hero-title-line-1::after,
+  .hero-title-line-2::after {
+    height: 0.22em;
+    filter: blur(10px);
+    opacity: 0.38;
+  }
+
+  .hero-text {
+    max-width: 18em;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .hero-text br {
+    display: none;
+  }
+
+  /* =========================
+     FVボタン最終デザイン
+  ========================= */
+  .hero-actions {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 16px;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+  }
+
+  .hero-actions .btn-primary {
+    background: linear-gradient(135deg, #c7a066, #a77a38);
+    box-shadow:
+      0 8px 20px rgba(154, 116, 66, 0.22),
+      inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+
+  .hero-actions .btn-secondary {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: rgba(255,255,255,0.9);
+    box-shadow: none;
+  }
+
+  /* 主従をはっきり */
+  .hero-actions .btn-primary {
+    order: 1;
+  }
+
+  .hero-actions .btn-secondary {
+    order: 2;
+  }
+
+  /* =========================
+     FVバッジ
+  ========================= */
+  .hero-badges {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .hero-badges span {
+    padding: 6px 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-badges span:nth-child(3) {
+    display: none;
+  }
+
+  .hero-vertical {
+    display: none;
+  }
+
+  .scroll-indicator {
+    bottom: 8px !important;
+    font-size: 0.56rem !important;
+    opacity: 0.72 !important;
+  }
+
+  .scroll-indicator span {
+    height: 20px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .scroll-indicator::after {
+    height: 12px !important;
+  }
+
+  /* =========================
+     波形修正
+     変な凹凸をなくして、ゆるい一山にする
+  ========================= */
+  .section-wave-top {
+    position: relative;
+    margin-top: 0;
+  }
+
+  .section-wave-top::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -18px;
+    width: 100%;
+    height: 22px;
+    background: var(--bg-soft);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 1;
+
+    /* 変なうねりをやめて、なだらかな一山 */
+    clip-path: ellipse(72% 100% at 50% 100%);
+  }
+
+  .pairing.section-wave-top,
+  .news.section-wave-top {
+    margin-top: 0;
+    padding-top: 68px;
+  }
+
+  /* craft → lineup の境目も整理 */
+  #craft.section {
+    padding-bottom: 74px;
+  }
+
+  #craft.section::after {
+    height: 52px;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(20,20,20,0) 0%,
+        rgba(20,20,20,0.02) 34%,
+        rgba(20,20,20,0.03) 60%,
+        rgba(20,20,20,0) 100%
+      );
+  }
+
+  #lineup.section {
+    margin-top: -8px;
+    padding-top: 74px;
+  }
+
+  #lineup.section::before {
+    height: 54px;
+    background:
+      radial-gradient(
+        ellipse at center top,
+        rgba(255,255,255,0.26) 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0) 78%
+      );
+  }
+
+  /* メッセージ帯も少し締める */
+  .message-band.section-band {
+    margin-top: -28px;
+    padding-bottom: 4px;
+  }
+
+  .message-band-box {
+    border-radius: 20px;
+    padding: 22px 18px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+  }
+
+  .message-band-box p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+}
